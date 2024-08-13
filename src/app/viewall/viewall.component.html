@@ -1,0 +1,58 @@
+<div class="container">
+    <h2>All Properties</h2>
+
+<!-- Search Form -->
+<form (ngSubmit)="onSearch()">
+    <div class="form-row">
+      <div class="form-group col-md-2">
+        <label for="city">City</label>
+        <input type="text" class="form-control" id="lcity" [(ngModel)]="searchParams.city" name="city">
+      </div>
+      <div class="form-group col-md-2">
+        <label for="location">Location</label>
+        <input type="text" class="form-control" id="location" [(ngModel)]="searchParams.location" name="location">
+      </div>
+      <div class="form-group col-md-2">
+        <label for="propertyType">Property Type</label>
+        <select id="propertyType" class="form-control" [(ngModel)]="searchParams.propertyType" name="propertyType">
+          <option value="">Select</option>
+          <option value="residential">Residential</option>
+          <option value="commercial">Commercial</option>
+        </select>
+      </div>
+      <div class="form-group col-md-2">
+        <label for="rent">Rent</label>
+        <input type="number" class="form-control" id="rent" [(ngModel)]="searchParams.rent" name="rent">
+      </div>
+      <div class="form-group col-md-3 align-self-end">
+        <button type="submit" class="btn btn-primary">Search</button>
+      </div>
+    </div>
+  </form>
+
+
+
+    <div *ngIf="properties.length === 0">
+      <p>No properties found.</p>
+    </div>
+    <div *ngIf="properties.length > 0">
+      <div *ngFor="let property of properties" class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">{{ property.propertyType | uppercase }} Property</h5>
+          <!-- <img *ngIf="property.photos" [src]="property.photos" alt="Property Image" class="img-fluid"> -->
+          <p class="card-text"><strong>City:</strong> {{ property.city }}</p>
+          <p class="card-text"><strong>Location:</strong> {{ property.location }}</p>
+          <p class="card-text"><strong>Rent:</strong> {{ property.rent }}</p>
+          <p class="card-text"><strong>Size:</strong> {{ property.size }}</p>
+          <p class="card-text"><strong>Area:</strong> {{ property.area }}</p>
+          <p class="card-text"><strong>Face:</strong> {{ property.face }}</p>
+          <p class="card-text"><strong>Building Type:</strong> {{ property.buildingType }}</p>
+          <p class="card-text"><strong>Advance:</strong> {{ property.advance }}</p>
+          <p class="card-text"><strong>Years of Construction:</strong> {{ property.yearsOfConstruction }}</p>
+          <p class="card-text"><strong>Inner Facilities:</strong> {{ property.innerFacilities }}</p>
+          <p class="card-text"><strong>Nearby Facilities:</strong> {{ property.nearbyFacilities }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  

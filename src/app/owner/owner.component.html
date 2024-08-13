@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <nav class="navbar navbar-expand-md navbar-dark   flex-md-column  flex-row align-items-start">
+                <a href="#" class="navbar-brand">Welcome
+                    <br>
+                    <img src="https://th.bing.com/th/id/R.a97d9942cbb9a464f6519e9b7e91b58d?rik=kndN13rtYk5Ffw&riu=http%3a%2f%2ficons.iconarchive.com%2ficons%2fhopstarter%2fsleek-xp-basic%2f256%2fAdministrator-icon.png&ehk=743DoVdoKOLWsN2lIGBTOJQqxkDVTqMJZvtx0Jm%2fEcA%3d&risl=&pid=ImgRaw&r=0" width="180" alt="" class="img">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidenav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="sidenav">
+                    <ul class="flex-md-column  navbar-nav w-100 justify-content-between">
+                        <li class="nav-item">
+
+                            <a routerLink="/own" class="nav-link">Home</a>
+                        </li>
+                        <li class="nav-item"><a routerLink="/own/fill" class="nav-link">Fill</a></li>
+                        <li class="nav-item"><a routerLink="/own/viewforms" class="nav-link">AllForms</a></li>
+                        <li class="nav-item"><a routerLink="" class="nav-link">Logout</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="col-md-9">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

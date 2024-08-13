@@ -1,0 +1,160 @@
+<div class="container mt-5">
+    <form [formGroup]="propertyForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="propertyType">Property Type</label>
+        <select class="form-control" id="propertyType" formControlName="propertyType">
+          <option value="">Select...</option>
+          <option value="residential">Residential</option>
+          <option value="commercial">Commercial</option>
+        </select>
+      </div>
+  
+      <div *ngIf="propertyForm.get('propertyType')?.value === 'residential'">
+        <h3>Residential Property Details</h3>
+        <div class="form-group">
+          <label for="resCity">City</label>
+          <select class="form-control" id="resCity" formControlName="resCity" [(ngModel)]="resCity"  (change)="onCityChange(resCity)">
+            <option *ngFor="let city of cityList" [value]="city">{{city}}</option>
+          </select>
+          <!-- <input type="text" class="form-control" id="resCity" formControlName="resCity"> -->
+        </div>
+        <div class="form-group">
+          <label for="resLocation">Location</label>
+          <select class="form-control" id="resLocation" formControlName="resLocation" [(ngModel)]="resLocation" [disabled]="!resCity">
+            <option *ngFor="let location of locationList" [value]="location">{{location}}</option>
+          </select>
+          <!-- <input type="text" class="form-control" id="resLocation" formControlName="resLocation"> -->
+        </div>
+        <div class="form-group">
+          <label for="resRent">Rent ($)</label>
+          <input type="number" class="form-control" id="resRent" formControlName="resRent">
+        </div>
+        <div class="form-group">
+          <label for="resSize">Size of Property</label>
+          <select class="form-control" id="resSize" formControlName="resSize">
+            <option value="1Rk">1 Rk</option>
+            <option value="1Bhk">1 Bhk</option>
+            <option value="2Bhk">2 Bhk</option>
+            <option value="3Bhk">3 Bhk</option>
+            <option value="duplex">Duplex House</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="resArea">Area of Property (Sft)</label>
+          <input type="number" class="form-control" id="resArea" formControlName="resArea">
+        </div>
+        <div class="form-group">
+          <label for="resFace">Face of Property</label>
+          <select class="form-control" id="resFace" formControlName="resFace">
+            <option value="east">East</option>
+            <option value="west">West</option>
+            <option value="north">North</option>
+            <option value="south">South</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="resBuildingType">Building Type</label>
+          <select class="form-control" id="resBuildingType" formControlName="resBuildingType">
+            <option value="independent">Independent</option>
+            <option value="apartment">Apartment (Floor)</option>
+          </select>
+          <input *ngIf="propertyForm.get('resBuildingType')?.value === 'apartment'" type="number" class="form-control mt-2" formControlName="resFloor" placeholder="Floor number">
+        </div>
+        <div class="form-group">
+          <label for="resYearsOfConstruction">Years of Construction (optional)</label>
+          <input type="number" class="form-control" id="resYearsOfConstruction" formControlName="resYearsOfConstruction">
+        </div>
+        <div class="form-group">
+          <label for="resAdvance">Advance Payment ($)</label>
+          <input type="number" class="form-control" id="resAdvance" formControlName="resAdvance">
+        </div>
+        <div class="form-group">
+          <label for="resPhotos">Photos</label>
+          <input type="file" class="form-control" id="resPhotos" formControlName="resPhotos" multiple>
+        </div>
+        <div class="form-group">
+          <label for="resInnerFacilities">Inner Facilities</label>
+          <textarea class="form-control" id="resInnerFacilities" formControlName="resInnerFacilities"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="resNearbyFacilities">Nearby Facilities</label>
+          <textarea class="form-control" id="resNearbyFacilities" formControlName="resNearbyFacilities"></textarea>
+        </div>
+      </div>
+  
+      <div *ngIf="propertyForm.get('propertyType')?.value === 'commercial'">
+        <h3>Commercial Property Details</h3>
+        <div class="form-group">
+          <label for="comCity">City</label>
+          <select class="form-control" id="comCity" formControlName="comCity" [(ngModel)]="comCity"  (change)="onCityChange(comCity)">
+            <option *ngFor="let city of cityList" [value]="city">{{city}}</option>
+          </select>
+          <!-- <input type="text" class="form-control" id="resCity" formControlName="resCity"> -->
+        </div>
+        <div class="form-group">
+          <label for="comLocation">Location</label>
+          <select class="form-control" id="comLocation" formControlName="comLocation" [(ngModel)]="comLocation" [disabled]="!comCity">
+            <option *ngFor="let location of locationList" [value]="location">{{location}}</option>
+          </select>
+          <!-- <input type="text" class="form-control" id="resLocation" formControlName="resLocation"> -->
+        </div>
+        <div class="form-group">
+          <label for="comRent">Rent ($)</label>
+          <input type="number" class="form-control" id="comRent" formControlName="comRent">
+        </div>
+        <div class="form-group">
+          <label for="comSize">Size of Property</label>
+          <select class="form-control" id="comSize" formControlName="comSize">
+            <option value="shutter">Shutter</option>
+            <option value="office">Office</option>
+            <option value="includesBedroom">Includes Bedroom</option>
+            <option value="includesKitchen">Includes Kitchen</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="comArea">Area of Property (Sft)</label>
+          <input type="number" class="form-control" id="comArea" formControlName="comArea">
+        </div>
+        <div class="form-group">
+          <label for="comFace">Face of Property</label>
+          <select class="form-control" id="comFace" formControlName="comFace">
+            <option value="east">East</option>
+            <option value="west">West</option>
+            <option value="north">North</option>
+            <option value="south">South</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="comBuildingType">Building Type</label>
+          <select class="form-control" id="comBuildingType" formControlName="comBuildingType">
+            <option value="independent">Independent</option>
+            <option value="apartment">Apartment (Floor)</option>
+          </select>
+          <input *ngIf="propertyForm.get('comBuildingType')?.value === 'apartment'" type="number" class="form-control mt-2" formControlName="comFloor" placeholder="Floor number">
+        </div>
+        <div class="form-group">
+          <label for="comYearsOfConstruction">Years of Construction (optional)</label>
+          <input type="number" class="form-control" id="comYearsOfConstruction" formControlName="comYearsOfConstruction">
+        </div>
+        <div class="form-group">
+          <label for="comAdvance">Advance Payment ($)</label>
+          <input type="number" class="form-control" id="comAdvance" formControlName="comAdvance">
+        </div>
+        <div class="form-group">
+          <label for="comPhotos">Photos</label>
+          <input type="file" class="form-control" id="comPhotos" formControlName="comPhotos" multiple>
+        </div>
+        <div class="form-group">
+          <label for="comInnerFacilities">Inner Facilities</label>
+          <textarea class="form-control" id="comInnerFacilities" formControlName="comInnerFacilities"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="comNearbyFacilities">Nearby Facilities</label>
+          <textarea class="form-control" id="comNearbyFacilities" formControlName="comNearbyFacilities"></textarea>
+        </div>
+      </div>
+  
+      <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+  </div>
+  
